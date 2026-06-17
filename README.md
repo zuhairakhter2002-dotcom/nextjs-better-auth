@@ -103,7 +103,7 @@ This project can be deployed on:
 
 **Zuhair Akhter**
 
-GitHub: https://github.com/zuhairakhter2002-dotcom
+GitHub: https://github.com/zuhairmansoori
 
 ---
 
