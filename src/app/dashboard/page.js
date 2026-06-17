@@ -7,6 +7,10 @@ import { redirect } from "next/navigation";
 import React from 'react'
 
 async function Page() {
+
+  await new Promise((resolve) =>
+    setTimeout(resolve, 3000)    // for custom wait
+  )
   const session = await auth.api.getSession({
     headers: await headers()
   })

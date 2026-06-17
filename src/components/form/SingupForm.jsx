@@ -32,10 +32,12 @@ function SingupForm() {
             if (error) {
                 console.log(error);
                 seterror(error.message)
+                setprovider(null)
                 return
             } else {
                 console.log('data', data);
                 setsuccess('account create succsesfully')
+                setprovider(null)
 
 
             }

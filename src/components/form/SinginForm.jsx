@@ -35,6 +35,7 @@ function SinginForm() {
             if (error) {
                 console.log('this', error);
                 seterror(error.message)
+                setprovider(null)
             } else {
                 console.log(data);
                 setemail('')
