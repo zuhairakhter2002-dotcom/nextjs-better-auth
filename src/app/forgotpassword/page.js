@@ -3,27 +3,35 @@ import { useState } from "react";
 import { authClient } from "@/lib/client-auth";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useLoading } from "@/hooks/useLoading";
+import LoadingBtn from "@/components/ui/LoadingBtn";
 
 export default function Page(){
     const [email,setemail]= useState('')
-    const [message,setmessage] = useState ('')
+    const [error,seterror] = useState ('')
+    const [success,setsuccess] = useState ('')
+    const {loading,execute} = useLoading()
+    
 
     const handleBtn = async (e) =>{
         e.preventDefault()
         console.log('btn');
-        
-        const {data,error} = await  authClient.requestPasswordReset({
+        await execute(async()=>{
+           const {data,error} = await  authClient.requestPasswordReset({
             email,
             redirectTo:'http://localhost:3000/reset-password'
         })
         console.log('this for forget page',data,'or',error);
         
         if(error){
-            setmessage(error.message)
+            seterror(error.message)
             console.log(error)
             return
         }
-        setmessage('Reset link send to your email')
+        setsuccess('Link send to your email')
+        })
+        
+       
     }
    return(
     <>
@@ -43,11 +51,13 @@ export default function Page(){
                     <Input className={'bg-blue-100'} value={email} id={'email'} type={'email'} placeholder={'Enter your email'} onChange={(e)=>setemail(e.target.value)}/>
                  </div>
                  <div>
-                    <Button type={'submit'}>Send Link</Button>
+                    <LoadingBtn type={'submit'} loading={loading} loadingvalue={'Send link...'}>Send Link</LoadingBtn>
+                  
                  </div>
              </form>
            </div>
-            <p className="my-2 text-[16px] text-red-500">{message}</p>
+          {error &&  <p className="my-2 text-[16px] text-red-500">{error}</p>} 
+          {success && <p className="my-2 text-[16px] text-green-500">{success}</p>}
             </div>
        </div>
     </>

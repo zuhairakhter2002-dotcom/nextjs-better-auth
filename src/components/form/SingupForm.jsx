@@ -8,37 +8,48 @@ import { Label } from '../ui/label'
 import Link from 'next/link'
 import { authClient } from '@/lib/client-auth'
 import { useRouter } from 'next/navigation'
+import { useLoading } from "@/hooks/useLoading";
+import LoadingBtn from "../ui/LoadingBtn";
 function SingupForm() {
     const [email, setemail] = useState('')
     const [password, setpassword] = useState('')
     const [name, setname] = useState('')
-    const [message, setmessage] = useState('')
+    const [error, seterror] = useState('')
+    const [success, setsuccess] = useState('')
     const [show, setshow] = useState(false)
+    const [provider, setprovider] = useState('')
+    const { loading, execute } = useLoading()
     const router = useRouter()
 
     const onsubmitbtn = async (e) => {
         e.preventDefault()
-        const { data, error } = await authClient.signUp.email({
-            email, password, name
+        setprovider('singup')
+        await execute(async () => {
+            const { data, error } = await authClient.signUp.email({
+                email, password, name
+            })
+
+            if (error) {
+                console.log(error);
+                seterror(error.message)
+                return
+            } else {
+                console.log('data', data);
+                setsuccess('account create succsesfully')
+
+
+            }
+            setname('')
+            setemail('')
+            setpassword('')
+
         })
-
-        if (error) {
-            console.log(error);
-            setmessage(error.message)
-            return
-        } else {
-            console.log('data', data);
-            setmessage('account create succsesfully')
-
-
-        }
-        setname('')
-        setemail('')
-        setpassword('')
 
     }
     const handlegooglelogin = async () => {
-        try {
+        setprovider('google')
+        await execute(async()=>{
+                try {
             await authClient.signIn.social({
                 provider: 'google',
                 callbackURL: '/dashboard'
@@ -48,9 +59,13 @@ function SingupForm() {
             setmessage(error?.message || "Something went wrong")
 
         }
+        })
+       
     }
     const handlegithublgin = async () => {
-        try {
+        setprovider('github')
+        await execute(async()=>{
+             try {
             await authClient.signIn.social({
                 provider: 'github',
                 callbackURL: '/dashboard'
@@ -60,6 +75,8 @@ function SingupForm() {
             setmessage(error?.message || "Something went wrong")
 
         }
+        })
+       
     }
     return (
         <div className='w-full h-screen flex justify-center items-center bg-black'>
@@ -90,18 +107,19 @@ function SingupForm() {
                             <div className='grid gap-2'>
                                 <Label htmlFor='password'>Password</Label>
                                 <div className="relative">
-                                <Input className={'bg-blue-100'} type={show ? 'text' : 'password'} placeholder={'Enter Your Password'} id={'password'} value={password} required onChange={(e) => setpassword(e.target.value)} />
-                                <button className={'absolute right-3 top-1/2 -translate-y-1/2 bg-transparent'}  type={'button'} onClick={() => setshow(!show)}>{show ? <EyeOff /> : <Eye />}</button>
+                                    <Input className={'bg-blue-100'} type={show ? 'text' : 'password'} placeholder={'Enter Your Password'} id={'password'} value={password} required onChange={(e) => setpassword(e.target.value)} />
+                                    <button className={'absolute right-3 top-1/2 -translate-y-1/2 bg-transparent'} type={'button'} onClick={() => setshow(!show)}>{show ? <EyeOff /> : <Eye />}</button>
+                                </div>
                             </div>
-                            </div>
-                            <p className='text-red-600 mt-2'>{message}</p>
+                            <p className='text-red-600 mt-2'>{error}</p>
+                            <p className='text-green-600 mt-2'>{success}</p>
                         </div>
                     </form>
                 </CardContent>
                 <CardFooter className={'flex flex-col gap-2'}>
-                    <Button type={'submit'} className={'w-full'} onClick={onsubmitbtn}>Sing Up</Button>
-                    <Button variant='outline' className='w-full' onClick={handlegooglelogin} >Countinue With Google</Button>
-                    <Button variant='outline' className='w-full' onClick={handlegithublgin}>Continue With Github</Button>
+                     <LoadingBtn loading={provider==='singup'} loadingvalue={"Sing Up..."} type={'submit'} className={'w-full'} onClick={onsubmitbtn}>Sing Up</LoadingBtn>
+                     <LoadingBtn loading={provider==='google'} loadingvalue={'Connecting With Google...'} variant='outline' className='w-full' onClick={handlegooglelogin}>Countinue With Google</LoadingBtn>
+                    <LoadingBtn loading={provider==='github'} loadingvalue={'Connecting With Github...'}  variant='outline' className='w-full' onClick={handlegithublgin} >Continue With Github</LoadingBtn>
 
                 </CardFooter>
             </Card>

@@ -6,6 +6,9 @@ import { authClient } from "@/lib/client-auth";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useLoading } from "@/hooks/useLoading";
+import LoadingBtn from "@/components/ui/LoadingBtn";
+import { Spinner } from "@/components/ui/spinner";
 
 function Page() {
     const [password,setpassword]=useState('')
@@ -14,39 +17,46 @@ function Page() {
          password: false,
          confirmPassword: false,
     })
-    const [message, setmessage] = useState('')
+    const [error, seterror] = useState('')
+    const [success, setsuccess] = useState('')
     const router = useRouter()
     const searchParams = useSearchParams()
     const token = searchParams.get('token')
+    const {loading,execute} = useLoading()
     console.log('token',token);
     
 
-//      useLayoutEffect(() => {
-//     if (!token) {
-//       router.push('/')
-//     }
-//   }, [token, router])
+     useEffect(() => {
+    if (!token) {
+      router.push('/')
+    }
+  }, [token, router])
     
     const handleBtn = async (e) =>{
          e.preventDefault()
         
+        
         if(!token){
-            setmessage('invalid resrt link')
+            seterror('invalid resrt link')
+            await new Promise((res)=>setTimeout( res, 1000))
             router.push('/')
             return
         }
-        const {data,error} = await authClient.resetPassword({
+         await execute( async()=>{
+            const {data,error} = await authClient.resetPassword({
             newPassword:password,
             token
         })
         if(error){
-            setmessage(error.message)
+            seterror(error.message)
             return
         }
-        setmessage('Password reset successfully')
+        setsuccess('Password reset successfully')
         setTimeout(() => {
             router.push('/singin')
-        }, 1500);
+        },500);
+         })
+      
     }
   return (
     <div>
@@ -73,9 +83,11 @@ function Page() {
                  <button className={'absolute right-3 top-1/2 -translate-y-1/2 bg-transparent'} type={'button'} onClick={()=>setshow({...show,confirmPassword:!show.confirmPassword})} >{show.confirmPassword ? <EyeOff/>:<Eye/>}</button>
                </div>
                </div>
-               <Button className={'w-full'}  type='submit'>Change Password</Button>
+               <LoadingBtn disabled={loading} loadingvalue={"Changing Password..."} type={'submit'} className={'w-full'}>Change Password</LoadingBtn>
+               
            </form>
-           <p className="my-2 text-red-500">{message}</p>
+          {error && <p className="my-2 text-red-500">{error}</p> } 
+          {success && <p className="my-2 text-green-500">{success}</p> } 
        </div>
        </div>
     </div>
