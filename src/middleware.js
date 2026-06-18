@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 
 export  function middleware(req) {
-    const token = req.cookies.get('better-auth.session_token')
+    req.cookies.get("__Secure-better-auth.session_token") ||
+    req.cookies.get("better-auth.session_token");
     const isAuthPage =
      req.nextUrl.pathname === "/" ||
     req.nextUrl.pathname === "/signup";
@@ -16,7 +17,7 @@ export  function middleware(req) {
             new URL('/dashboard',req.url)
         )
     }
-    NextResponse.next()
+  return  NextResponse.next()
     
 } 
 
