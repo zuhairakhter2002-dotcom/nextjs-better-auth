@@ -126,8 +126,7 @@ Deploy easily on:
 
 **Zuhair Akhtar**
 
-GitHub:
-https://github.com/zuhairmansoori
+
 
 ---
 
