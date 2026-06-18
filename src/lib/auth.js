@@ -101,7 +101,7 @@ export const auth = betterAuth({
                 { sort: { updatedAt: -1 } }
               );
 
-            console.log("Account found:", account?.providerId); // debug
+            // console.log("Account found:", account?.providerId); // debug
 
             if (!account) return { data: session };
 

@@ -30,14 +30,14 @@ function SinginForm() {
           const { data, error } = await authClient.signIn.email({
                 email, password
             })
-            console.log('this is ', error);
+            // console.log('this is ', error);
 
             if (error) {
-                console.log('this', error);
+                // console.log('this', error);
                 seterror(error.message)
                 setprovider(null)
             } else {
-                console.log(data);
+                // console.log(data);
                 setemail('')
                 setpassword('')
                 router.push('/dashboard')
@@ -47,8 +47,8 @@ function SinginForm() {
     }
     const handlegooglelogin = async () => {
            setprovider('google')
-           console.log("start");
-           console.log(provider==='google');
+        //    console.log("start");
+        //    console.log(provider==='google');
            
         await execute(async()=>{
              try {
@@ -56,13 +56,13 @@ function SinginForm() {
                 provider: 'google',
                 callbackURL: '/dashboard'
             })
-             console.log("after social");
+            //  console.log("after social");
         } catch (error) {
-            console.log('google error :', error.message)
+            // console.log('google error :', error.message)
             seterror(error?.message || "Something went wrong")
 
         }
-          console.log("finished");
+        //   console.log("finished");
         })
        
     }
@@ -75,7 +75,7 @@ function SinginForm() {
                 callbackURL: '/dashboard'
             })
         } catch (error) {
-            console.log('github error:', error.message);
+            // console.log('github error:', error.message);
             seterror(error?.message || "Something went wrong")
 
         }

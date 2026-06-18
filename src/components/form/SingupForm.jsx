@@ -30,12 +30,12 @@ function SingupForm() {
             })
 
             if (error) {
-                console.log(error);
+                // console.log(error);
                 seterror(error.message)
                 setprovider(null)
                 return
             } else {
-                console.log('data', data);
+                // console.log('data', data);
                 setsuccess('account create succsesfully')
                 setprovider(null)
 
@@ -57,7 +57,7 @@ function SingupForm() {
                 callbackURL: '/dashboard'
             })
         } catch (error) {
-            console.log('google error :', error.message)
+            // console.log('google error :', error.message)
             setmessage(error?.message || "Something went wrong")
 
         }
@@ -73,7 +73,7 @@ function SingupForm() {
                 callbackURL: '/dashboard'
             })
         } catch (error) {
-            console.log('github error:', error.message);
+            // console.log('github error:', error.message);
             setmessage(error?.message || "Something went wrong")
 
         }

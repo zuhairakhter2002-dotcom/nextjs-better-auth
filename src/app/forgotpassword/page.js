@@ -15,17 +15,17 @@ export default function Page(){
 
     const handleBtn = async (e) =>{
         e.preventDefault()
-        console.log('btn');
+        // console.log('btn');
         await execute(async()=>{
            const {data,error} = await  authClient.requestPasswordReset({
             email,
             redirectTo:'http://localhost:3000/reset-password'
         })
-        console.log('this for forget page',data,'or',error);
+        // console.log('this for forget page',data,'or',error);
         
         if(error){
             seterror(error.message)
-            console.log(error)
+            // console.log(error)
             return
         }
         setsuccess('Link send to your email')

@@ -1,45 +1,61 @@
+# 🔐 ZA Auth - Next.js Authentication System
 
-# 🔐 Next.js Better Auth
-
-A complete authentication system built with **Next.js**, **Better Auth**, and **MongoDB**.
+A modern and secure authentication system built with **Next.js 16**, **Better Auth**, **MongoDB**, and **Tailwind CSS**.
 
 ## ✨ Features
 
 * Email & Password Authentication
 * Google OAuth Login
-* Session Management
-* Protected Routes
-* Password Reset
 * Email Verification
+* Password Reset System
+* Protected Routes with Middleware
+* Session Management
+* Custom Loading Page
+* Custom Error Page
+* Custom 404 Not Found Page
+* User Dashboard
 * MongoDB Database Integration
-* Modern UI with Next.js
+* Responsive UI
+* Secure Authentication Flow
 
 ## 🛠️ Tech Stack
 
-* Next.js
+* Next.js 16
+* React 19
 * Better Auth
 * MongoDB
-* React
 * Tailwind CSS
+* Resend
+* Lucide React
+
+## 📸 Screenshots
+
+Add screenshots of:
+
+* Sign In Page
+* Sign Up Page
+* Dashboard
+* Email Verification
+* Password Reset
 
 ## 🚀 Getting Started
 
-### 1. Clone Repository
+### Clone Repository
 
 ```bash
-git clone https://github.com/zuhairakhter2002-dotcom/nextjs-better-auth.git
+git clone https://github.com/zuhairmansoori/nextjs-better-auth.git
 cd nextjs-better-auth
 ```
 
-### 2. Install Dependencies
+### Install Dependencies
 
 ```bash
 npm install
 ```
 
-### 3. Configure Environment Variables
+### Configure Environment Variables
 
-Create a `.env.local` file in the root directory:
+Create a `.env.local` file:
 
 ```env
 MONGODB_URI=your_mongodb_connection_string
@@ -49,9 +65,14 @@ BETTER_AUTH_URL=http://localhost:3000
 
 GOOGLE_CLIENT_ID=your_google_client_id
 GOOGLE_CLIENT_SECRET=your_google_client_secret
+
+GITHUB_CLIENT_ID=your_github_client_id
+GITHUB_CLIENT_SECRET=your_github_client_secret
+
+RESEND_API_KEY=your_resend_api_key
 ```
 
-### 4. Run Development Server
+### Run Development Server
 
 ```bash
 npm run dev
@@ -63,7 +84,7 @@ Open:
 http://localhost:3000
 ```
 
-## 📦 Build for Production
+## 📦 Production Build
 
 ```bash
 npm run build
@@ -76,42 +97,38 @@ npm start
 src/
 ├── app/
 ├── components/
-├── lib/
 ├── actions/
-└── middleware/
+├── lib/
+├── hooks/
+└── middleware.js
 ```
 
 ## 🔒 Authentication Flow
 
-* User Sign Up
-* Email Verification
-* User Sign In
-* Session Creation
-* Protected Dashboard Access
-* Password Reset Support
+1. User Registration
+2. Email Verification
+3. User Login
+4. Session Creation
+5. Protected Dashboard Access
+6. Password Reset
+7. Secure Logout
 
 ## 🌐 Deployment
 
-This project can be deployed on:
+Deploy easily on:
 
 * Vercel
-* Netlify
-* VPS Servers
-* Docker Containers
+* VPS
+* Docker
+* Railway
 
 ## 👨‍💻 Author
 
-**Zuhair Akhter**
+**Zuhair Akhtar**
 
-GitHub: https://github.com/zuhairakhter2002-dotcom
+GitHub:
+https://github.com/zuhairmansoori
 
 ---
 
-⭐ If you found this project useful, consider giving it a star.
-
-
-
-
-
-
-
+⭐ If you found this project useful, please consider giving it a star.

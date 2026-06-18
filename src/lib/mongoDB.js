@@ -8,7 +8,7 @@ export async function connectDb (){
     if(cached.conn) return cached.conn
     if(!cached.promise){
         cached.process = mongoose.connect(mongoURI)
-        console.log('db is connected');
+        // console.log('db is connected');
         
     }
     cached.conn = await cached.promise
