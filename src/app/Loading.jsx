@@ -5,7 +5,7 @@ function Loading() {
     return (
         <div>
             <div className="h-screen flex items-center justify-center">
-                <Spinner />
+                <Spinner className={'w-20 h-20'} />
             </div>
         </div>
     )
