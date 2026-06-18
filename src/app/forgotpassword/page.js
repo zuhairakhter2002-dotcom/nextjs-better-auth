@@ -19,7 +19,7 @@ export default function Page(){
         await execute(async()=>{
            const {data,error} = await  authClient.requestPasswordReset({
             email,
-            redirectTo:'http://localhost:3000/reset-password'
+            redirectTo:`${window.location.origin}/reset-password`
         })
         // console.log('this for forget page',data,'or',error);
         
