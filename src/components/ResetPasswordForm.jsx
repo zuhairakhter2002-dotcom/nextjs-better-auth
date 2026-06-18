@@ -35,6 +35,11 @@ function ResetPasswordForm() {
     
     const handleBtn = async (e) =>{
          e.preventDefault()
+
+         if(password!==confirmPassword){
+            seterror("Password and Confirm Password must be same");
+            return
+         }
         
         
         if(!token){
