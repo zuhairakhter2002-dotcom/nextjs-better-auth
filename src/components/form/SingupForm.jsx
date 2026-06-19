@@ -83,7 +83,7 @@ function SingupForm() {
     }
     return (
         <div className='w-full h-screen flex justify-center items-center bg-transparent'>
-            <Card className={'w-full max-w-md shadow-[0px_0px_13px_0px_#fafafa] bg-white/10 backdrop-blur-md border border-white/20 text-gray-200'}>
+            <Card className={'w-full max-w-md shadow-[0px_0px_13px_0px_#fafafa] bg-white/10 backdrop-blur-md border border-white/20 text-gray-200 grid'}>
                 <CardHeader>
                     <CardTitle>
                         Sign Up Your Account
@@ -91,14 +91,13 @@ function SingupForm() {
                     <CardDescription className={'text-gray-300 '}>
                        Enter your details to create an account
                     </CardDescription>
-                    <CardAction className='ml-2.5'>
-                        <span className="text-[12px] ">Alredy have an account</span>
+                    <CardAction >
                         <Button variant='link' className='text-blue-500' asChild><Link href='/singin'>Sign In</Link></Button>
                     </CardAction>
                 </CardHeader>
                 <CardContent>
                     <form  >
-                        <div className='flex flex-col gap-3'>
+                        <div className='grid gap-2'>
                             <div className='grid gap-2'>
                                 <Label htmlFor="name">Name</Label>
                                 <Input className={'bg-blue-100'} type={'text'} placeholder={'Enter Your Name'} id={'name'} value={name} required onChange={(e) => setname(e.target.value)} />
@@ -119,7 +118,7 @@ function SingupForm() {
                         </div>
                     </form>
                 </CardContent>
-                <CardFooter className={'flex flex-col gap-2 text-gray-900'}>
+                <CardFooter className={'flex-col gap-2 text-gray-900'}>
                     <LoadingBtn loading={provider === 'singup'} loadingvalue={"Sing Up..."} type={'submit'} className={'w-full hover:scale-[1.02] transition-all duration-300'} onClick={onsubmitbtn}>Sign Up</LoadingBtn>
                     <LoadingBtn loading={provider === 'google'} loadingvalue={'Connecting With Google...'} variant='outline' className='w-full hover:bg-white/90' onClick={handlegooglelogin}>
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">

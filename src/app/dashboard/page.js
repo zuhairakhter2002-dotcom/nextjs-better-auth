@@ -45,20 +45,20 @@ async function Page() {
           <div className="flex flex-col md:flex-row tify-between items-center md:items-start md:gap-10">
             {session?.user?.image ?   <Image className="rounded-full border-4 border-purple-400" src={session?.user?.image} alt="user image" width={250} loading="eager" height={250}   unoptimized /> : <User className="w-50 h-50 text-gray-200"/>}
         
-          <div className="grid gap-7 mt-10">
-            <h2 className="text-xl md:text-2xl text-gray-200">
+          <div className="grid gap-3 mt-10">
+            <h2 className="text-[15px]  md:text-2xl text-gray-200">
                Name : <strong>{ session?.user?.name}  </strong>   
             </h2>
-            <h3 className="text-[17px] md:text-xl text-gray-200">
+            <h3 className="text-[15px] md:text-xl text-gray-200">
               Email :
                <strong>{ session?.user?.email}</strong>
               </h3>
              
-            <h3 className="text-[18px] md:text-xl text-gray-200">
+            <h3 className="text-[15px]  md:text-xl text-gray-200">
                EmailVerify :
                <strong> { session?.user?.emailVerified?'True':'False'}</strong>
               </h3>
-            <h3 className="text-[18px] md:text-xl text-gray-200">
+            <h3 className="text-[15px] md:text-xl text-gray-200">
                Role :
                <strong> { session?.user?.role}</strong>
               </h3>
