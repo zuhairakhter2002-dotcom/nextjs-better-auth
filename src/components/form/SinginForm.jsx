@@ -60,6 +60,7 @@ function SinginForm() {
         } catch (error) {
             // console.log('google error :', error.message)
             seterror(error?.message || "Something went wrong")
+            setprovider(null)
 
         }
         //   console.log("finished");
@@ -77,6 +78,7 @@ function SinginForm() {
         } catch (error) {
             // console.log('github error:', error.message);
             seterror(error?.message || "Something went wrong")
+            setprovider(null)
 
         }
         })

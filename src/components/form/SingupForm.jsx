@@ -59,6 +59,7 @@ function SingupForm() {
         } catch (error) {
             // console.log('google error :', error.message)
             setmessage(error?.message || "Something went wrong")
+            setprovider(null)
 
         }
         })
@@ -75,7 +76,7 @@ function SingupForm() {
         } catch (error) {
             // console.log('github error:', error.message);
             setmessage(error?.message || "Something went wrong")
-
+        setprovider(null)
         }
         })
        

@@ -12,7 +12,7 @@ async function Page() {
 //  throw new Error("Server crashed")
 
   await new Promise((resolve) =>
-    setTimeout(resolve, 3000)    // for custom wait
+    setTimeout(resolve, 1000)    // for custom wait
   )
   const session = await auth.api.getSession({
     headers: await headers()
