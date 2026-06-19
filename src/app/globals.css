@@ -116,6 +116,14 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 }
+input{
+  background-color:rgba(187, 184, 182, 0.752);
+  color: black
+}
+input::placeholder{
+  color: rgb(61, 57, 57)
+}
+
 
 @layer base {
   * {
