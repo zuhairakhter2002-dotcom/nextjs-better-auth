@@ -7,7 +7,7 @@ let cached = global.mongoose || {conn:null,promise:null}
 export async function connectDb (){
     if(cached.conn) return cached.conn
     if(!cached.promise){
-        cached.process = mongoose.connect(mongoURI)
+        cached.promise = mongoose.connect(mongoURI)
         // console.log('db is connected');
         
     }

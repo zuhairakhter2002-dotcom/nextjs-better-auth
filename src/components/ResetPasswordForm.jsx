@@ -66,8 +66,10 @@ function ResetPasswordForm() {
     }
   return (
     <div>
-       <div className="flex justify-center h-screen items-center bg-black ">
-        <div className="w-full max-w-sm bg-white  rounded-2xl shadow-[0px_0px_13px_0px_#fafafa]  p-7">
+       <div className="flex justify-center h-screen items-center bg-transparent ">
+        <div className="w-full max-w-sm   rounded-2xl shadow-[0px_0px_13px_0px_#fafafa] bg-white/10
+backdrop-blur-md text-gray-200
+border border-white/20 p-7">
             <div>
                 <h2 className="my-4 text-xl">
                     Reset Your Password
@@ -79,17 +81,20 @@ function ResetPasswordForm() {
                  <Label htmlFor={'password'}>Password</Label>
                  <div className="relative">
                  <Input className={'bg-blue-100'} value={password} type={show.password ? 'text' :'password'} id={'password'} required onChange={(e)=>setpassword(e.target.value)}/>
-                 <button className={'absolute right-3 top-1/2 -translate-y-1/2 bg-transparent'} type={'button'} onClick={()=>setshow({...show,password:!show.password})}>{show.password ?<EyeOff/> : <Eye/>}</button>
+                 <button className={'absolute right-3 top-1/2 -translate-y-1/2 bg-transparent text-gray-500 hover:text-gray-700'} type={'button'} onClick={()=>setshow({...show,password:!show.password})}>{show.password ?<EyeOff/> : <Eye/>}</button>
                </div>
                </div>
                <div  className="flex flex-col gap-3">
                  <Label htmlFor={'confirm-password'}>Confirm Password</Label>
                  <div className="relative">
                  <Input className={'bg-blue-100'} value={confirmPassword} type={show.confirmPassword ? 'text ':'password'} id={'confirm-password'} required onChange={(e)=>setconfirmPassword(e.target.value)}/>
-                 <button className={'absolute right-3 top-1/2 -translate-y-1/2 bg-transparent'} type={'button'} onClick={()=>setshow({...show,confirmPassword:!show.confirmPassword})} >{show.confirmPassword ? <EyeOff/>:<Eye/>}</button>
+                 <button className={'absolute right-3 top-1/2 -translate-y-1/2 bg-transparent'} type={'button text-gray-500 hover:text-gray-700'} onClick={()=>setshow({...show,confirmPassword:!show.confirmPassword})} >{show.confirmPassword ? <EyeOff/>:<Eye/>}</button>
                </div>
                </div>
-               <LoadingBtn disabled={loading} loadingvalue={"Changing Password..."} type={'submit'} className={'w-full'}>Change Password</LoadingBtn>
+               <div className="flex justify-center">
+                <LoadingBtn disabled={loading} loadingvalue={"Changing Password..."} type={'submit'} className={'w-full'}>Change Password</LoadingBtn>
+               
+               </div>
                
            </form>
           {error && <p className="my-2 text-red-500">{error}</p> } 

@@ -3,6 +3,7 @@ import { mongodbAdapter } from "@better-auth/mongo-adapter";
 import { connectDb } from "./mongoDB";
 import { Resend } from "resend";
 import mongoose from "mongoose";
+
 await connectDb()
 const client = mongoose.connection.getClient()
 const { ObjectId } = mongoose.Types
@@ -29,9 +30,9 @@ export const auth = betterAuth({
     enabled: true,
     requireEmailVerification: true,
     sendResetPassword: async ({ user, url, token }) => {
-      console.log("RESET EMAIL CALLED", user.email);
-      console.log(user.email);
-      console.log(url);
+      // console.log("RESET EMAIL CALLED", user.email);
+      // console.log(user.email);
+      // console.log(url);
       await resend.emails.send({
         from: "Zaita.com <onboarding@resend.dev>",
         to: user.email,
